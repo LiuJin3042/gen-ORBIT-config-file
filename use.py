@@ -42,12 +42,12 @@ def pack(comment,pdist,numeric):
     # cp certain files based the value of pdist and numeric
     if pdist*numeric == 2:
         # numeric balance and distribution
-        gso('cp {orbit,orbit.F,spdata,fbm_dist.dat,job.pbs} ./%s'%des_folder)
+        gso('cp {orbit,orbit.F,fbm_dist.dat,job.pbs} ./%s'%des_folder)
     elif pdist == 2:
         # numeric distribution
-        gso('cp {orbit,orbit.F,fbm_dist.dat,job.pbs,spdata} ./%s'%des_folder)
+        gso('cp {orbit,orbit.F,fbm_dist.dat,job.pbs} ./%s'%des_folder)
     else:
-        gso('cp {orbit,orbit.F,spdata,job.pbs} ./%s'%des_folder)
+        gso('cp {orbit,orbit.F,job.pbs} ./%s'%des_folder)
     # a program to package file 
     gso('cp {*.plt,orbit.out,configuration.py} ./%s/orbit_results'%(des_folder))
     gso('cp -r ./plot_functions ./%s'%(des_folder))
