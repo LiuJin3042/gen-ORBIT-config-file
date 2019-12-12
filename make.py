@@ -13,7 +13,7 @@ import modify
 import sys
 import time 
 import sub
-import gen_fbm
+# import gen_fbm
 
 
 def main(numeric, a, rmaj, rx, krip, q0, qed, qrx, modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, comment):

@@ -1026,13 +1026,13 @@ cccc the ripple is given by rdat(pol,thet)*sin(nrip*zet), fit with splines
  60   continue
 ccccc EAST ripple (Li Jibo's doctoral thesis: Numerical Simulation 
 ccccc of Fast Ion Corrugation Loss after EAST Neutral Beam Injection, p65 )
-      xrip = xc/rmaj*(171.D0-0.0018D0*(z1(j,k)*rmaj/xc)**2)
-      wrip = 14.92D0*xc/rmaj
       brip = 0.265D0
       nrip = 16
       d0 = 1.27D-4
       do 62 k = 1,lst
       do 62 j = 1,lsp
+      xrip = xc/rmaj*(171.D0-0.0018D0*(z1(j,k)*rmaj/xc)**2)
+      wrip = 14.92D0*xc/rmaj
       tau = sqrt((x1(j,k)-xrip)**2 + brip*(z1(j,k))**2)
       r1(j,k) = d0*b1(j,k)*exp(tau/wrip)
       r1(j,k) = log(r1(j,k))
