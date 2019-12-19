@@ -16,32 +16,36 @@ cccc  amp(md) is the ideal MHD displacement in units of major radius
 cccc   the ideal xi is amp*r**(m-1)
       nvalx = 2
       modes = 1
+      md1 = 1  
+      md2 = modes 
       harm(1) = 1
       mmod(1) = 2
       nmod(1) = 1
       amp(1) = 0.0005
       omegv(1) = 0.0*2.D3*pi/omeg0
       alfv(1) = 1
+      wdt(1) = 0.3
+      cnt(1) = 0.4
       dele = 10
       md1 = 1
       md2 = 1
 cccccccccccc-  restrict modes 
 ccc      go to 10
-      modes = 1
-      nval = 1
-      nvalx = 1
-      harm(1) = 1
-      md1 = 1
-      md2 = 1
+cc      modes = 1
+cc      nval = 1
+cc      nvalx = 1
+cc      harm(1) = 1
+cc      md1 = 1
+cc      md2 = 1
  10   continue
 cccccccccccc-Choose mode structure
       lpt = 900
       lptm = lpt - 1
       dpx = pw/lptm
-      wdt(1) = .3D0
-      cnt(1) = .5D0
-      wdt(2) = .2D0
-      cnt(2) = .6D0
+cc      wdt(1) = .3D0
+cc      cnt(1) = .5D0
+cc      wdt(2) = .2D0
+cc      cnt(2) = .6D0
 ccccc define a1
       do 25 md = md1,md2
       anorm = 0
@@ -54,7 +58,7 @@ ccccc define a1
          qdum = qfun(px)
          gdum = gfun(px)
          xd = rpol(px)/eps  ! xd is minor radius 0 < xd < 1
-         a1(j,md) = (eps*xd)**m*(pw-px)
+         a1(j,md) = exp(-((xd-cnt(md))/wdt(md))**2)
 cc              xx0= 0.6  ! xx0 is the position of O point of magnetic island
 cc              pp = 4/3   ! pp is a fractional number for an approximate value of m*(1/xx0-1)
 cc         a1(j,md)=(xd/xx0)**m*((1-xd)/(1-xx0))**pp

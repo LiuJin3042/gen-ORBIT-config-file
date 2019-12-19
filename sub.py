@@ -5,11 +5,13 @@ Created on Fri Aug 16 15:59:25 2019
 @author: LJ
 """
 import sys
+
 if sys.version[0] == '2':
     from commands import getstatusoutput as gso
 import use
 from yae_sakura import claim
 import time
+
 
 def sub_task(comment, pdist, numeric, submit, monitor):
     claim()
@@ -29,6 +31,6 @@ def sub_task(comment, pdist, numeric, submit, monitor):
         print(output)
         if monitor == 'y':
             use.monitor()
-            use.pack(comment,pdist,numeric)
+            use.pack(comment, pdist, numeric)
     else:
         print('not submitted')

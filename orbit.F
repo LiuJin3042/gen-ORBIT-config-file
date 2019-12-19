@@ -92,7 +92,7 @@ c    the rng is initialized with the date and time.
       iseed = 0
 ccc
 ccccc SIMULATION RUN TIME, in on-axis toroidal transits
-        ntor = 1500
+        ntor = 3000
 	if(nplot.eq.9) ntor = 200   !   kinetic poincare
 	if(nplot.eq.8) ntor = 100   ! mode excitation
 	if(nplot.eq.11) ntor = 50   ! rotation

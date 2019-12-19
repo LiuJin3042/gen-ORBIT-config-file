@@ -36,31 +36,33 @@ qrx = 2
 # krip = 6-EAST
 krip = 6
 
-
 """
 修改扰动文件perturb.f
 """
 # modes: 模数, 如果modes = 2, 可以理解为多个模叠加
-# 多个模要将值写在数组里
+# 以下变量要将值写在数组里
+# wnt: 高斯扰动的方差
+# cnt: 高斯扰动的平均值
 # mmod: m值
 # nmod: n值
 # amp: 模幅度
 # omegv: 频率, 单位为千赫兹
 # dele: 能量改变的步长, 只有在omegv不为0的时候才要设置
 modes = 1
-harm = [1,2,3]
-mmod = [2,2,2]
-nmod = [1,1,1]
-amp = [5e-4,5e-4,5e-4]
-omegv = [0,1,2]
+wdt = [0.3]
+cnt = [0.4]
+harm = [1, 2, 3]
+mmod = [2, 2, 2]
+nmod = [1, 1, 1]
+amp = [5e-4, 5e-4, 5e-4]
+omegv = [0, 1, 2]
 dele = 10
-alfv = [1,1,1]
-        
+alfv = [1, 1, 1]
 
 # 扰动模式
 # a1 = 1-gaussian, a1 = 2-gaussian MHD
 # a1 = 3-MHD, a1 = 4-resistive
-a1 = 4
+a1 = 1
 
 """ 
 修改主程序文件orbit.F
@@ -82,7 +84,7 @@ pdist = 3
 nprt = 3000
 
 # ntor: 程序运行时间, 粒子绕环ntor周, 程序停止
-ntor = 1500
+ntor = 3000
 
 # bkg: 磁场强度, 千高斯
 bkg = 18
@@ -103,4 +105,4 @@ prot = 2
 ekev = 60
 
 # comment: 对本文件的目的说明, 可以随意修改, 会被用作新生成的文件夹名称
-comment = '21NTM_amp=%s'%amp[0]
+comment = '21NTM_amp=%s' % amp[0]
