@@ -12,21 +12,22 @@ from __future__ import division
 from configuration import *
 import make
 
-def linspace(start,stop,count):
+
+def linspace(start, stop, count):
     # generate a arithmetic progression, from start to stop, total number is count
-    step = (stop-start)/(count-1) 
+    step = (stop - start) / (count - 1)
     ap = []
     for i in range(count):
-        ap.append(start + i*step)
+        ap.append(start + i * step)
     return ap
 
-l_wdt = linspace(0,0.9,10)
-l_cnt = linspace(0,0.9,10)
+
+l_wdt = linspace(0, 0.9, 10)
+l_cnt = linspace(0, 0.9, 10)
 for iwdt in l_wdt:
     for icnt in l_cnt:
         wdt = [iwdt]
-	cnt = [icnt]
-	comment = 'guassian-wdt=%1.1f-cnt=%1.1f'%(wdt[0],cnt[0])
-        make.main(numeric,a,rmaj,rx,krip,q0,qed,qrx,modes,wdt,cnt,harm,nmod,mmod,omegv,alfv,amp,dele,a1,npert,polo,p1,p2,pchi,zprt,prot,ekev,bkg,ntor,nprt,nplot,pdist,comment)
-             
-
+        cnt = [icnt]
+        comment = 'guassian-wdt=%1.1f-cnt=%1.1f' % (wdt[0], cnt[0])
+        make.main(numeric, a, rmaj, rx, krip, q0, qed, qrx, modes, wdt, cnt, harm, nmod, mmod, omegv, alfv, amp, dele,
+                  a1, npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, comment)
