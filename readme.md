@@ -18,23 +18,49 @@
 * `source_file`: 文件夹, 里面有需要被修改的ORBIT代码. 这个文件夹不需要修改.
 * `yae_sakura.py`: 一张我爱人的字符照片. 没有什么用. 
 
+## 安装和更新
+
+安装程序已经集成在`install.sh`中, 当然也可以手动将脚本(所有的py文件和source_file文件夹)放到ORBIT代码同一个目录下.
+
+1. 在ORBIT文件夹中, 输入命令, 下载`install.sh`
+
+   ```
+   wget http://downgit.zhoudaxiaa.com/#/home?url=https://github.com/LiuJin3042/gen-ORBIT-config-file/blob/master/install.sh
+   ```
+
+2. 修改权限
+
+   ```
+   chmod 755 install.sh
+   ```
+
+3. 执行安装
+
+   ```
+   ./install.sh
+   ```
+
+4. 这个脚本也可以用来一键更新, 与远程保持同步
+
 ## 如何使用
 
-1. 将脚本(所有的py文件和source_file文件夹)放到ORBIT代码同一个目录下
+有两种使用方式
 
-2. 根据自己需要的参数编辑`configuration.py`
+1. 提交一次运行
+
+   根据自己需要的参数编辑`configuration.py`
 
    ```
    $ vi configuration.py
    ```
 
-3. 提交服务器并运行
+   提交服务器并运行
 
    ```
    $ python make.py
    ```
 
-4. 扫描参数
+2. 扫描参数, 批量运行
 
    需要修改batch_test.py, 对要扫描的参数写一个循环
 
@@ -54,9 +80,9 @@
    $ jobs
    ```
 
-   程序会自动识别任务号, 并且在小任务完成后自动开启下一个小任务. 因此你可以**在不同的文件夹中**运行`batch_test.py`
+   程序会自动识别任务号, 并且在小任务完成后自动开启下一个小任务. 因此你可以**在不同的文件夹中**同时运行`batch_test.py`
 
-5. 如果并没有通过此方法就提交了服务器, 想要监视服务器运算情况, 使用`use.py`
+3. 如果并没有通过此方法就提交了服务器, 想要监视服务器运算情况, 使用`use.py`
 
    ```
    $ python use.py
@@ -64,4 +90,4 @@
 
    它会每隔一定的时间向服务器询问运行情况并打印在屏幕上
 
-6. 运行结果会放到一个名为'日期-备注'的文件夹里, 格式为`20190911-[comment]`
+4. 运行结果会放到一个名为'日期-备注'的文件夹里, 格式为`20190901-[comment]`
