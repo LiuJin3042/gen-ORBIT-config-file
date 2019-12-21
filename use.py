@@ -8,7 +8,6 @@ Created on Wed Aug 14 16:40:57 2019
 import sys
 import time
 
-from subprocess import getstatusoutput as gso
 if sys.version[0] == '2':
     from commands import getstatusoutput as gso
 from configuration import *
