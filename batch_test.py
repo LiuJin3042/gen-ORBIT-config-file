@@ -20,15 +20,13 @@ def linspace(start,stop,count):
         ap.append(start + i*step)
     return ap
 
-l_pchi = linspace(0,1,10)
-l_polo = linspace(0,1,20)
-
-for ipchi in l_pchi:
-    for ipolo in l_polo:
-        pchi = ipchi
-        polo = ipolo
- 	krip = 0
-        comment = 'pchi=%4f_polo=%4f_no-ripple_NTM'%(pchi,polo)
-        make.main(numeric,a,rmaj,rx,krip,q0,qed,qrx,modes,harm,nmod,mmod,omegv,alfv,amp,dele,a1,npert,polo,p1,p2,pchi,zprt,prot,ekev,bkg,ntor,nprt,nplot,pdist,comment)
+l_wdt = linspace(0,0.9,10)
+l_cnt = linspace(0,0.9,10)
+for iwdt in l_wdt:
+    for icnt in l_cnt:
+        wdt = [iwdt]
+	cnt = [icnt]
+	comment = 'guassian-wdt=%1.1f-cnt=%1.1f'%(wdt[0],cnt[0])
+        make.main(numeric,a,rmaj,rx,krip,q0,qed,qrx,modes,wdt,cnt,harm,nmod,mmod,omegv,alfv,amp,dele,a1,npert,polo,p1,p2,pchi,zprt,prot,ekev,bkg,ntor,nprt,nplot,pdist,comment)
              
 
