@@ -7,6 +7,8 @@ Created on Fri Aug 16 15:59:25 2019
 import sys
 
 from subprocess import getstatusoutput as gso
+if sys.version[0] == '2':
+    from commands import getstatusoutput as gso
 import use
 from yae_sakura import claim
 import time

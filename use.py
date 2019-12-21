@@ -9,6 +9,8 @@ import sys
 import time
 
 from subprocess import getstatusoutput as gso
+if sys.version[0] == '2':
+    from commands import getstatusoutput as gso
 from configuration import *
 import re
 
