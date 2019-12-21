@@ -51,13 +51,13 @@ krip = 6
 modes = 1
 wdt = [0.3]
 cnt = [0.4]
-harm = [1, 2, 3]
-mmod = [2, 2, 2]
-nmod = [1, 1, 1]
-amp = [5e-4, 5e-4, 5e-4]
-omegv = [0, 1, 2]
+harm = [1]
+mmod = [2]
+nmod = [1]
+amp = [5e-5]
+omegv = [0]
 dele = 10
-alfv = [1, 1, 1]
+alfv = [1]
 
 # 扰动模式
 # a1 = 1-gaussian, a1 = 2-gaussian MHD
