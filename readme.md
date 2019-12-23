@@ -25,7 +25,7 @@
 1. 在ORBIT文件夹中, 输入命令, 下载`install.sh`
 
    ```
-   wget http://downgit.zhoudaxiaa.com/#/home?url=https://github.com/LiuJin3042/gen-ORBIT-config-file/blob/master/install.sh
+   wget https://raw.githubusercontent.com/LiuJin3042/gen-ORBIT-config-file/master/install.sh
    ```
 
 2. 修改权限
