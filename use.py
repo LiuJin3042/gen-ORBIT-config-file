@@ -5,6 +5,7 @@ Created on Wed Aug 14 16:40:57 2019
 @author: LJ
 """
 
+from __future__ import print_function
 import sys
 import time
 
@@ -25,10 +26,10 @@ def monitor():
             snap_time = 15
         status, output = gso('qstat')
         pattern = '(\d{7})\.service'
-        jobid = re.findall(pattern, status, output)[-1]
-        print('jobid is ', jobid)
-        while re.findall(jobid, status, output):
-            print(status, output)
+        jobid = re.findall(pattern, output)[-1]
+        print('jobid is ', jobid, '\n')
+        while re.findall(jobid, output):
+            print(output)
             time.sleep(snap_time)
             status, output = gso('qstat')
             print('\n\n\n\n\n')

@@ -28,7 +28,8 @@ def love_u(word, print_size):
         for x in x_range:
             one_line = one_line + (word[(x-y) % word_len]if in_heart(x, y) else ' ')
         output_word = output_word + '\n' + one_line
-    [(time.sleep(sleep_time), print(i, end='')) for i in output_word]
+    [(time.sleep(sleep_time), print(i, end='')) for i in output_word] 
+    print('\n')
 
 
 def signal_handler(signal, frame):
