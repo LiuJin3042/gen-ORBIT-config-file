@@ -79,9 +79,11 @@ nplot = 2
 # pdist, 粒子分布模式
 # pdist = 1-shelldep, pdist = 2-sampledep
 # pdist = 3-poindep,  pdist = 4-poinkdep
-pdist = 3
+# pdist = 5-fulldepe
+pdist = 5
+
 # nprt: 粒子数
-nprt = 3000
+nprt = 30000
 
 # ntor: 程序运行时间, 粒子绕环ntor周, 程序停止
 ntor = 3000

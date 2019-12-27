@@ -97,7 +97,7 @@ def mod_orbit(npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplo
     orbit[94] = '        ntor = ' + str(ntor) + '\n'
     orbit[79] = '        nprt = ' + str(nprt) + '\n'
     orbit[75] = '      nplot = ' + str(nplot) + '\n'
-    ndist = ['shelldep', 'sampledep', 'poindep', 'poinkdep']
+    ndist = ['shelldep', 'sampledep', 'poindep', 'poinkdep', 'fulldepe']
     orbit[242] = '        call ' + ndist[pdist - 1] + '\n'
     w_orbit.writelines(orbit)
     r_orbit.close()
