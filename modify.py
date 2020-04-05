@@ -7,8 +7,7 @@ Created on Fri Aug 16 15:50:00 2019
 
 from __future__ import division
 
-
-def mod_eqs(numeric, a, rmaj, rx, krip, q0, qed, qrx, ):
+def mod_eqs(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0):
     # modify eqs.f, new file will be output to main dir.
     # read files - rewrite certain lines - write to new files
     r_eqs = open('./source_file/eqs.f', 'r')
@@ -18,6 +17,7 @@ def mod_eqs(numeric, a, rmaj, rx, krip, q0, qed, qrx, ):
     eps = a / rmaj
     # convert rx from a normalized to rmaj normalized
     rx = rx * a / rmaj
+    eqs[24] = "            mp0 = '" + mp0 + "'\n"
     eqs[50] = '        rmaj = ' + str(rmaj) + '\n'
     eqs[106] = '      eps = ' + str(a) + '.D0/rmaj\n'
     eqs[61] = '      krip = ' + str(krip) + '\n'
@@ -37,7 +37,7 @@ def mod_eqs(numeric, a, rmaj, rx, krip, q0, qed, qrx, ):
     w_eqs.close()
 
 
-def mod_perturb(modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt):
+def mod_perturb(modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file):
     r_ptrb = open('./source_file/perturb.f', 'r')
     w_ptrb = open('./perturb.f', 'w')
     ptrb = r_ptrb.readlines()
@@ -75,12 +75,14 @@ def mod_perturb(modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt):
                    mode_type[1] + '\n'
     else:
         ptrb[51] = '         a1(j,md) = ' + mode_type[a1 - 1] + '\n'
+    ptrb[376] ="       plabel = '" + ptrb_file + "'\n"
+    ptrb[449] ="       plabel = '" + ptrb_file + "'\n"
     w_ptrb.writelines(ptrb)
     r_ptrb.close()
     w_ptrb.close()
 
 
-def mod_orbit(npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, krip):
+def mod_orbit(npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, krip, perturb_subroutine):
     r_orbit = open('./source_file/orbit.F', 'r')
     w_orbit = open('./orbit.F', 'w')
     orbit = r_orbit.readlines()
@@ -99,6 +101,9 @@ def mod_orbit(npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplo
     orbit[75] = '      nplot = ' + str(nplot) + '\n'
     ndist = ['shelldep', 'sampledep', 'poindep', 'poinkdep', 'fulldepe']
     orbit[242] = '        call ' + ndist[pdist - 1] + '\n'
+    perturb_f = ['readptrba','readptrbx']
+    if npert == 4:
+        orbit[181] = '    call ' + perturb_f[perturb_subroutine] + '\n'
     w_orbit.writelines(orbit)
     r_orbit.close()
     w_orbit.close()

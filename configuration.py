@@ -29,6 +29,9 @@ qed = 4.9
 rx = 0.5
 qrx = 2
 
+# mp0: 数值平衡的文件, 默认是map01.cdf
+mp0 = 'map01.cdf'
+
 # 波纹种类,krip
 # krip = 0-无波纹; krip = 1-TFTR
 # krip = 2-Tore Supra; krip = 3-ITER
@@ -40,7 +43,7 @@ krip = 0
 修改扰动文件perturb.f
 """
 # modes: 模数, 如果modes = 2, 可以理解为多个模叠加
-# 以下变量要将值写在数组里
+# 以下变量要将值写在数组[]里
 # wnt: 高斯扰动的方差
 # cnt: 高斯扰动的平均值
 # mmod: m值
@@ -59,27 +62,42 @@ omegv = [3]
 dele = 10
 alfv = [1]
 
-# 扰动模式
+# 解析扰动的表达式, 只有解析扰动才需要设置
 # a1 = 1-gaussian, a1 = 2-gaussian MHD
 # a1 = 3-MHD, a1 = 4-resistive
 a1 = 4
 
-""" 
-修改主程序文件orbit.F
-"""
 # npert: 扰动模式
-# npert = 1-有磁扰动, npert = 2-有势扰动
-# npert = 3-两者都有, npert = 0-无扰动
-npert = 1
+# npert = 0-无扰动
+# npert = 1-有磁扰动
+# npert = 2-有势扰动
+# npert = 3-两者都有
+# npert = 4-调用readptrbx或readptrba读取扰动
+npert = 4
+
+# perturb_subroutine: 调用哪个函数读取扰动
+# 仅当npert = 4时需要使用
+# perturb_subroutine = 0-调用readptrba
+# perturb_subroutine = 1-调用readptrbx
+perturb_subroutine = 1
+
+# ptrb_file: 数值扰动的文件
+# 仅当npert = 4时需要使用
+ptrb_file = 'file.txt'
 
 # nplot: 运行模式
-# nplot = 1-单粒子, nplot = 2-多粒子
+# nplot = 1-单粒子
+# nplot = 2-多粒子
+# nplot = 3-庞加莱图
+# nplot = 4-均匀分布
 nplot = 2
 
 # pdist, 粒子分布模式
-# pdist = 1-shelldep, pdist = 2-sampledep
-# pdist = 3-poindep,  pdist = 4-poinkdep
-# pdist = 5-fulldepe
+# pdist = 1-shelldep
+# pdist = 2-sampledep, 从fbm_dist.dat里读取分布
+# pdist = 3-poindep, 庞加莱分布
+# pdist = 4-poinkdep
+# pdist = 5-fulldepe, 画相位图
 pdist = 1
 
 # nprt: 粒子数
@@ -106,5 +124,20 @@ zprt = 1
 prot = 2
 ekev = 10
 
+# submit: 编译完成后是否提交运行
+# submit = 1-提交
+# submit = 0-不提交
+submit = 1
+# monitor: 是否一直监视程序的运行状态
+# monitor = 1-监视
+# monitor = 0-后台运行
+monitor = 1
+
 # comment: 对本文件的目的说明, 可以随意修改, 会被用作新生成的文件夹名称
 comment = 'east-shelldep-test'
+
+
+
+
+
+

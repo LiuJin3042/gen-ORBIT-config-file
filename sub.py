@@ -25,10 +25,10 @@ def sub_task(comment, pdist, numeric, submit, monitor):
     print(output)
     # let the user choose weather to submit the job
     # make sure it is 'y' when using batch test
-    if submit == 'y':
+    if submit == 1:
         status, output = gso('qsub ./job.pbs')
         print(output)
-        if monitor == 'y':
+        if monitor == 1:
             use.monitor()
             use.pack(comment, pdist, numeric)
     else:

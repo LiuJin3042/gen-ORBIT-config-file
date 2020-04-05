@@ -77,7 +77,7 @@ cccc  CHOICE OF RUN, PLOTS
       nploteq = 1
 cc
 ccccc NUMBER OF PARTICLES-  
-        nprt = 30000
+        nprt = 10000
 c	if(nplot.eq.3) nprt = 30  ! poincare 
 	if(nplot.eq.9) nprt = 40    ! kinetic poincare
 	if(nplot.eq.11) nprt = 4000    ! stoch and FLI
@@ -106,16 +106,16 @@ ccc   READ EQUILIBRIUM DATA IN SPDATA
     
 ccc      call drev    ! reverses drift direction
 cccc  FIELD STRENGTH
-      bkg = 18
+      bkg = 24.2
 cccc
 cccc  numerical equilibrium spdata read
 cccc  can set ripple zero with krip=0
-      krip = 6
+      krip = 0
       kripsav = krip
 ccc
 cccc  PERTURBATION CHOICE, 0=none, 1=delta B, 2=potential, 3=both
 ccc    4= read delta B perturbation
-        npert = 1
+        npert = 4
 	if(nplot.eq.10) npert = 1
 	if(nplot.eq.12) npert = 1
 	if(nplot.eq.8) npert = 1
@@ -124,16 +124,16 @@ ccc    4= read delta B perturbation
       pamp =1000    ! potential amplitude, Kev
 ccccc
 ccc   PARTICLE DISTRIBUTION, see shelldep, poindep
-        polo = 0.5*pw
+        polo = 0.8*pw
         p1 = 0.01*pw
         p2 = 0.99*pw
-        pchi = 0
+        pchi = 0.7
 
 cccccc
 ccccc  PARTICLE PARAMETERS
       zprt = 1.D0
       prot = 2.D0
-      ekev = 60
+      ekev = 10
 cccccccccc
 cccc-  DISTRIBUTION PARAMETERS -for stochastic, either stochmu or stoche
 	mubk = 10    !   mu*B0 in keV
@@ -179,10 +179,10 @@ cccccc        read(89,*)
 cccccc 5      continue
 cc
 ccc   PERTURBATION DATA
-	if(npert.eq.1) call ampa  !  analytic alpha
+    call readptrbx
 cc	if(npert.eq.1) call ampx  ! analytic  xi
-cc	if(npert.eq.4) call readptrba  !  read alpha
-	if(npert.eq.4) call readptrbx  !  read xi
+cc 	if(npert.eq.4) call readptrba  !  read alpha
+cc	if(npert.eq.4) call readptrbx  !  read xi
 	n4start = tim4*omeg0/dt0
 ccccc
 cccccc  COLLISIONS , drag -units of on-axis gyro freq
@@ -240,7 +240,7 @@ ccc shelldep gives a general uniform distribution.
 ccc sampledep reads from TRANSP data
 ccc    poincare,  alphas,  fulldep,  read distf, btail
 	tdum = -2.6983
-        call fulldepe
+        call shelldep
 cc        if(nplot.eq.1) call shelldep(tdum)
 cc        if(nplot.eq.2) call shelldep(tdum)
 cc        if(nplot.eq.2) call sampledep   !  read from TRANSP
@@ -250,15 +250,15 @@ ccc	if(nplot.eq.2) call distread  !  Continuation using dumped dist
 ccc	if(nplot.eq.2) call btail     !  bump on tail
 c	if(nplot.eq.3) call poindep   !  Poincare
 ccc	if(nplot.eq.2) call alphdep   !  Alphas
-	if(nplot.eq.5) call bootdep   ! bootstrap
-	if(nplot.eq.6) call tent      !  local diffusion
-        if(nplot.eq.7) call shelldep(tdum)
-	if(nplot.eq.8) call fulldep2   !  all confined
-	if(nplot.eq.9) call poinkdep  !  
-	if(nplot.eq.10) call poinkdep
-	if(nplot.eq.11) call poinkrot
-        if(nplot.eq.16) call freqdep
-        if(nplot.eq.17) call epfdep
+c	if(nplot.eq.5) call bootdep   ! bootstrap
+c	if(nplot.eq.6) call tent      !  local diffusion
+c        if(nplot.eq.7) call shelldep(tdum)
+c	if(nplot.eq.8) call fulldep2   !  all confined
+c	if(nplot.eq.9) call poinkdep  !  
+c	if(nplot.eq.10) call poinkdep
+cc	if(nplot.eq.11) call poinkrot
+c        if(nplot.eq.16) call freqdep
+c        if(nplot.eq.17) call epfdep
         call trapfrac    ! calculation of trapped fraction
 ccccccccccccccccccccccccccccc
 cccc  end input

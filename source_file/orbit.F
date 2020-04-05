@@ -179,10 +179,10 @@ cccccc        read(89,*)
 cccccc 5      continue
 cc
 ccc   PERTURBATION DATA
-	if(npert.eq.1) call ampa  !  analytic alpha
+ 	if(npert.eq.1) call ampa  !  analytic alpha
 cc	if(npert.eq.1) call ampx  ! analytic  xi
-cc	if(npert.eq.4) call readptrba  !  read alpha
-	if(npert.eq.4) call readptrbx  !  read xi
+cc 	if(npert.eq.4) call readptrba  !  read alpha
+cc	if(npert.eq.4) call readptrbx  !  read xi
 	n4start = tim4*omeg0/dt0
 ccccc
 cccccc  COLLISIONS , drag -units of on-axis gyro freq
@@ -250,15 +250,15 @@ ccc	if(nplot.eq.2) call distread  !  Continuation using dumped dist
 ccc	if(nplot.eq.2) call btail     !  bump on tail
 c	if(nplot.eq.3) call poindep   !  Poincare
 ccc	if(nplot.eq.2) call alphdep   !  Alphas
-	if(nplot.eq.5) call bootdep   ! bootstrap
-	if(nplot.eq.6) call tent      !  local diffusion
-        if(nplot.eq.7) call shelldep(tdum)
-	if(nplot.eq.8) call fulldep2   !  all confined
-	if(nplot.eq.9) call poinkdep  !  
-	if(nplot.eq.10) call poinkdep
-	if(nplot.eq.11) call poinkrot
-        if(nplot.eq.16) call freqdep
-        if(nplot.eq.17) call epfdep
+c	if(nplot.eq.5) call bootdep   ! bootstrap
+c	if(nplot.eq.6) call tent      !  local diffusion
+c        if(nplot.eq.7) call shelldep(tdum)
+c	if(nplot.eq.8) call fulldep2   !  all confined
+c	if(nplot.eq.9) call poinkdep  !  
+c	if(nplot.eq.10) call poinkdep
+cc	if(nplot.eq.11) call poinkrot
+c        if(nplot.eq.16) call freqdep
+c        if(nplot.eq.17) call epfdep
         call trapfrac    ! calculation of trapped fraction
 ccccccccccccccccccccccccccccc
 cccc  end input

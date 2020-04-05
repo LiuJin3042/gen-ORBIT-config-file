@@ -7,7 +7,6 @@ Created on Wed Aug 14 17:20:47 2019
 
 from __future__ import print_function
 import time
-import signal
 
 
 def in_heart(x,y):
@@ -31,10 +30,5 @@ def love_u(word, print_size):
     [(time.sleep(sleep_time), print(i, end='')) for i in output_word] 
     print('\n')
 
-
-def signal_handler(signal, frame):
-    return 0
-
 def claim():
-    signal.signal(signal.SIGINT, signal_handler) # 防止ctrl+c退出
     love_u('YAE SAKURA ', [45,12])
