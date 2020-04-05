@@ -50,8 +50,8 @@ cccc     numerical equilibrium choice
 c
         rmaj = 185
 ccc
-         lsp = 201   ! b,x,z,giac,q,ripple- poloidal spline grid points
-         lst = 141   ! b,x,z,giac,ripple, must be odd-theta spline grid points
+         lsp = 81   ! b,x,z,giac,q,ripple- poloidal spline grid points
+         lst = 81   ! b,x,z,giac,ripple, must be odd-theta spline grid points
          lemax = 4    ! g, I
          lrmax = 8              ! pol(r), r(pol), pressure
          write(6,26) lsp,lst

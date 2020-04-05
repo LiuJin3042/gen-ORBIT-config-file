@@ -21,7 +21,7 @@ cccc   the ideal xi is amp*r**(m-1)
       harm(1) = 1
       mmod(1) = 2
       nmod(1) = 1
-      amp(1) = 0.0005
+      amp(1) = 5e-05
       omegv(1) = 0.0*2.D3*pi/omeg0
       alfv(1) = 1
       wdt(1) = 0.3

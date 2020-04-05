@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Fri Aug 16 08:04:15 2019
 
@@ -22,12 +21,16 @@ def linspace(start, stop, count):
     return ap
 
 
-l_wdt = linspace(0, 0.9, 10)
-l_cnt = linspace(0, 0.9, 10)
-for iwdt in l_wdt:
-    for icnt in l_cnt:
-        wdt = [iwdt]
-        cnt = [icnt]
-        comment = 'guassian-wdt=%1.1f-cnt=%1.1f' % (wdt[0], cnt[0])
-        make.main(numeric, a, rmaj, rx, krip, q0, qed, qrx, modes, wdt, cnt, harm, nmod, mmod, omegv, alfv, amp, dele,
+l_amp = [0]
+l_polo = linspace(0.1,0.7,4)
+l_ekev = linspace(20,100,5)
+
+for i_ekev in l_ekev:
+    for i_amp in l_amp:
+        for i_polo in l_polo:
+            amp = [i_amp]
+            polo = i_polo
+	    ekev = i_ekev
+	    comment = 'D-amp=%e-polo=%f-ekev=%d'%(amp[0],polo,ekev)
+	    make.main(numeric, a, rmaj, rx, krip, q0, qed, qrx, modes, wdt, cnt, harm, nmod, mmod, omegv, alfv, amp, dele,
                   a1, npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, comment)

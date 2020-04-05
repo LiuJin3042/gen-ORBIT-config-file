@@ -57,7 +57,8 @@
    提交服务器并运行
 
    ```
-   $ python make.py
+   $ python make.py // 或者
+   $ nohup python make.py &
    ```
 
 2. 扫描参数, 批量运行

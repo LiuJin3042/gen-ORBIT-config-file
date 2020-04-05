@@ -77,7 +77,7 @@ cccc  CHOICE OF RUN, PLOTS
       nploteq = 1
 cc
 ccccc NUMBER OF PARTICLES-  
-        nprt = 3000
+        nprt = 30000
 c	if(nplot.eq.3) nprt = 30  ! poincare 
 	if(nplot.eq.9) nprt = 40    ! kinetic poincare
 	if(nplot.eq.11) nprt = 4000    ! stoch and FLI
@@ -240,7 +240,7 @@ ccc shelldep gives a general uniform distribution.
 ccc sampledep reads from TRANSP data
 ccc    poincare,  alphas,  fulldep,  read distf, btail
 	tdum = -2.6983
-        call poindep
+        call fulldepe
 cc        if(nplot.eq.1) call shelldep(tdum)
 cc        if(nplot.eq.2) call shelldep(tdum)
 cc        if(nplot.eq.2) call sampledep   !  read from TRANSP
