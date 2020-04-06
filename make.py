@@ -22,7 +22,7 @@ import gen_fbm
 def main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0, 
          modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file,
          npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, perturb_subroutine,
-         submit = 1,monitor = 1):
+         submit):
     """
     read and rewrite eqs.f
     output file should be in the same dir
@@ -33,7 +33,7 @@ def main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0,
     read and rewrite perturb.f
     output file should be in the same dir
     """
-    modify.mod_perturb(modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file)
+    modify.mod_perturb(npert, modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file)
 
     """
     read and rewrite orbit.F
@@ -52,11 +52,11 @@ def main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0,
     """
 
     if sys.version[0] == '2':
-        sub.sub_task(comment, pdist, numeric, submit, monitor)
+        sub.sub_task(comment, submit)
 
 
 if __name__ == '__main__':
     main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0, 
          modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file,
          npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, perturb_subroutine,
-         submit = 1,monitor = 1)
+         submit)

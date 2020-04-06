@@ -30,7 +30,9 @@ for i_ekev in l_ekev:
         for i_polo in l_polo:
             amp = [i_amp]
             polo = i_polo
-	    ekev = i_ekev
-	    comment = 'D-amp=%e-polo=%f-ekev=%d'%(amp[0],polo,ekev)
-	    make.main(numeric, a, rmaj, rx, krip, q0, qed, qrx, modes, wdt, cnt, harm, nmod, mmod, omegv, alfv, amp, dele,
-                  a1, npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, comment)
+            ekev = i_ekev
+            comment = 'D-amp=%e-polo=%f-ekev=%d'%(amp[0],polo,ekev)
+            main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0, 
+                 modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file,
+                 npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, perturb_subroutine,
+                 submit)

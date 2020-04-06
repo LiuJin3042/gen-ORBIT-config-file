@@ -42,25 +42,25 @@ krip = 0
 """
 修改扰动文件perturb.f
 """
-# modes: 模数, 如果modes = 2, 可以理解为多个模叠加
-# 以下变量要将值写在数组[]里
+# modes: 模数, 如果有8个模, 设置modes = 8
+# 以下变量要将值写在数组[]里, 元素的个数务必等于modes
 # wnt: 高斯扰动的方差
 # cnt: 高斯扰动的平均值
-# mmod: m值
-# nmod: n值
+# mmod: m值, 对应每个模的m
+# nmod: n值, 对应每个模的n
 # amp: 模幅度
 # omegv: 频率, 单位为千赫兹
 # dele: 能量改变的步长, 只有在omegv不为0的时候才要设置
-modes = 1
+modes = 9
+dele = 10
 wdt = [0.3]
 cnt = [0.4]
 harm = [1]
-mmod = [2]
-nmod = [1]
-amp = [5e-5]
-omegv = [3]
-dele = 10
-alfv = [1]
+mmod = [2,2,2,2,13,1,3,9,7]
+nmod = [1,2,4,1,2,3,7,1,9]
+amp = [5e-5,6e-5,6e-5,6e-5,6e-5,6e-5,6e-5,6e-5,6e-5]
+omegv = [3,4,5,6,7,8,9,1,2]
+alfv = [1,1,1,1,1,1,1,1,1]
 
 # 解析扰动的表达式, 只有解析扰动才需要设置
 # a1 = 1-gaussian, a1 = 2-gaussian MHD
@@ -83,7 +83,7 @@ perturb_subroutine = 1
 
 # ptrb_file: 数值扰动的文件
 # 仅当npert = 4时需要使用
-ptrb_file = 'file.txt'
+ptrb_file = 'filea.txt'
 
 # nplot: 运行模式
 # nplot = 1-单粒子
@@ -128,10 +128,6 @@ ekev = 10
 # submit = 1-提交
 # submit = 0-不提交
 submit = 1
-# monitor: 是否一直监视程序的运行状态
-# monitor = 1-监视
-# monitor = 0-后台运行
-monitor = 1
 
 # comment: 对本文件的目的说明, 可以随意修改, 会被用作新生成的文件夹名称
 comment = 'east-shelldep-test'

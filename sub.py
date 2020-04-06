@@ -12,7 +12,7 @@ from yae_sakura import claim
 import time
 
 
-def sub_task(comment, pdist, numeric, submit, monitor):
+def sub_task(comment, submit):
     claim()
     # make file
     print('making files, please wait')
@@ -24,12 +24,11 @@ def sub_task(comment, pdist, numeric, submit, monitor):
     status, output = gso('make FC=pgf90')
     print(output)
     # let the user choose weather to submit the job
-    # make sure it is 'y' when using batch test
+    # make sure it is 1 when using batch test
     if submit == 1:
         status, output = gso('qsub ./job.pbs')
         print(output)
-        if monitor == 1:
-            use.monitor()
-            use.pack(comment, pdist, numeric)
+        use.monitor()
+        use.pack(comment)
     else:
         print('not submitted')

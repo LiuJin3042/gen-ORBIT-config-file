@@ -179,7 +179,7 @@ cccccc        read(89,*)
 cccccc 5      continue
 cc
 ccc   PERTURBATION DATA
-    call readptrbx
+      call readptrbx
 cc	if(npert.eq.1) call ampx  ! analytic  xi
 cc 	if(npert.eq.4) call readptrba  !  read alpha
 cc	if(npert.eq.4) call readptrbx  !  read xi

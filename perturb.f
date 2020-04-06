@@ -15,17 +15,10 @@ cccc       kHz  = omegv(md)*omeg0/(2.D3*pi)
 cccc  amp(md) is the ideal MHD displacement in units of major radius
 cccc   the ideal xi is amp*r**(m-1)
       nvalx = 2
-      modes = 1
+      modes = 9
       md1 = 1  
       md2 = modes 
-      harm(1) = 1
-      mmod(1) = 2
-      nmod(1) = 1
-      amp(1) = 5e-05
-      omegv(1) = 3.0*2.D3*pi/omeg0
-      alfv(1) = 1
-      wdt(1) = 0.3
-      cnt(1) = 0.4
+      
       dele = 10
       md1 = 1
       md2 = 1
@@ -378,43 +371,82 @@ ccccccccccccccccccccccccccc
       REAL*8 thetd,zetd,sdum,agg,snmd,xx2,dp2,rdum,qmn
       REAL*8 qfun,qdum,pdum,rpol,giac,dum3
       INTEGER md,ndum,mdum,j,jm,jp,jpp,m,lptm,ldum,mload,k,jd,l,n
-      INTEGER jdum,idum,kdum,mmin,mmax,nmd
+      INTEGER jdum,idum,kdum,mmin,mmax,nmd,mmd
 C============
-ccc-modified for file from Nikolai, 3/2012, read xi
-      nval = 0
-      modes = 0
-       plabel = 'file.txt'
+       plabel = 'filea.txt'
       open(61,file=plabel,status='unknown') 
       write(6,801) plabel
  801  format('  subroutine readptrbx, perturbation read=   ',A30)
-      read(61,*) 
-      read(61,*) 
-      read(61,*) 
-      read(61,*) lpt,nmd,mmin,mmax,dum,ndum
-cc      write(6,*)  lpt,nmd,mmin,mmax,dum,ndum
+      read(61,*) jdum,idum
+      lpt = jdum
       lptm = lpt - 1
       dpx = pw/lptm
-      read (61,*) jdum,idum
-ccc      write(6,*) jdum,idum
-      do kdum = 1,2*idum
-      read(61,*)
-      enddo
-      read (61,*) jdum,idum
-      read (61,*) jdum,idum
       write(6,*) jdum,idum
-ccccccccccccccccccccccccccccc
       read(61,*) ((xi1(j,md),j=1,lpt),md = 1,idum)
 cccccccccccccccccccccccccccc
-      modes = modes + mmax - mmin + 1
+      modes = idum
       nval = 1
       harm(nval) = mmax - mmin + 1
-      do md = 1,harm(nval)
-         alfv(md) = 1
-         amp(md) = 1.D-3
-         omegv(md) = 1.e-4
-         nmod(md) = nmd
-         mmod(md) = mmin - 1 + md
-         enddo
+
+             alfv(1) = 1
+             amp(1) = 5.000e-05
+             omegv(1) = 3.000*2.0D3*pi/omeg0
+             nmod(1) = 1
+             mmod(1) = 2
+             
+             alfv(2) = 1
+             amp(2) = 6.000e-05
+             omegv(2) = 4.000*2.0D3*pi/omeg0
+             nmod(2) = 2
+             mmod(2) = 2
+             
+             alfv(3) = 1
+             amp(3) = 6.000e-05
+             omegv(3) = 5.000*2.0D3*pi/omeg0
+             nmod(3) = 4
+             mmod(3) = 2
+             
+             alfv(4) = 1
+             amp(4) = 6.000e-05
+             omegv(4) = 6.000*2.0D3*pi/omeg0
+             nmod(4) = 1
+             mmod(4) = 2
+             
+             alfv(5) = 1
+             amp(5) = 6.000e-05
+             omegv(5) = 7.000*2.0D3*pi/omeg0
+             nmod(5) = 2
+             mmod(5) = 13
+             
+             alfv(6) = 1
+             amp(6) = 6.000e-05
+             omegv(6) = 8.000*2.0D3*pi/omeg0
+             nmod(6) = 3
+             mmod(6) = 1
+             
+             alfv(7) = 1
+             amp(7) = 6.000e-05
+             omegv(7) = 9.000*2.0D3*pi/omeg0
+             nmod(7) = 7
+             mmod(7) = 3
+             
+             alfv(8) = 1
+             amp(8) = 6.000e-05
+             omegv(8) = 1.000*2.0D3*pi/omeg0
+             nmod(8) = 1
+             mmod(8) = 9
+             
+             alfv(9) = 1
+             amp(9) = 6.000e-05
+             omegv(9) = 2.000*2.0D3*pi/omeg0
+             nmod(9) = 9
+             mmod(9) = 7
+             
+c         alfv(md) = 1
+c         amp(md) = 1.D-4
+c         omegv(md) = 207*2.0D3*pi/omeg0
+c         nmod(md) = nmd
+c         mmod(md) = mmd
  81   continue
       nvalx = nval
 cccccccccccccccccccccccc
@@ -435,12 +467,8 @@ cccccccccc-renormalize
       write(6,57) dum,dum2,nval
  57   format('  change amp,freq, nval',1p2e12.4,i6)
             do 50 md = md1,md2
-               amp(md) = amp(md)*dum   !   modify mode amplitude
-               omegv(md) = omegv(md)*dum2     !  modify frequency
                 dum3 = omegv(md)*omeg0/(2.D3*pi)
-ccc               write(6,52) md,mmod(md),nmod(md),amp(md),dum3
  52               format(i4,' mode- m,n,amp, freq ',2i4,1p2e12.4)
-ccc             write(6,121)(xi1(j,md),j=1,lpt)
  50            continue
                call splnx
                return
@@ -456,75 +484,28 @@ ccccccccccccccccccccccccccc
       INTEGER md,ndum,mdum,j,jm,jp,jpp,m,lptm,ldum,mload,k,jd,l,n
 C============
 ccc-modified for file from Nikolai, read alpha
-       plabel = 'file.txt'
+      nval = 0
+      modes = 0
+       plabel = 'filea.txt'
       open(61,file=plabel,status='unknown') 
       write(6,801) plabel
- 801  format('  subroutine readptrba, perturbation read=   ',A30)
-      nval = 0
       read(61,*) 
       read(61,*) 
-      read(61,*) lpt,mload
+      read(61,*) lpt,mload 
       lptm = lpt - 1
       dpx = pw/lptm
       nval = nval+1
       do  md=1,mload
          alfv(md) = nval
-      read(61,*) 
-      read(61,*) mmod(md),nmod(md),omrat,amp(md)
-      omegv(md) = 13.69*omrat*6280/omeg0 
-      read(61,111) (a1(j,md),j=1,lpt)
+         read(61,*) 
+         read(61,*) mmod(md),nmod(md),omrat,amp(md)
+         omegv(md) = omrat*2.0D3*pi/omeg0 
+         read(61,111) (a1(j,md),j=1,lpt)
       enddo
       modes = modes + mload
       harm(nval) = mload
-      open(62,file='ptr2_sm_141711.dat',status='unknown')
-      read(62,*) 
-      read(62,*) 
-      read(62,*) lpt,mload
-      lptm = lpt - 1
-      dpx = pw/lptm
-      nval = nval+1
-      do  md = modes + 1,modes + mload
-         alfv(md) = nval
-      read(62,*) 
-      read(62,*) mmod(md),nmod(md),omrat,amp(md)
-      omegv(md) = 13.69*omrat*6280/omeg0 
-      read(62,111) (a1(j,md),j=1,lpt)
-      enddo
-      modes = modes + mload
-      harm(nval) = mload
-  111 format(8e12.5)
-      open(63,file='ptr3_sm_141711.dat',status='unknown')
-      read(63,*) 
-      read(63,*) 
-      read(63,*) lpt,mload
-      lptm = lpt - 1
-      dpx = pw/lptm
-      nval = nval+1
-      do  md = modes + 1,modes + mload
-         alfv(md) = nval
-      read(63,*) 
-      read(63,*) mmod(md),nmod(md),omrat,amp(md)
-      omegv(md) = 13.69*omrat*6280/omeg0 
-      read(63,111) (a1(j,md),j=1,lpt)
-      enddo
-      modes = modes + mload
-      harm(nval) = mload
-      open(64,file='ptr4_sm_141711.dat',status='unknown')
-      read(64,*) 
-      read(64,*) 
-      read(64,*) lpt,mload
-      lptm = lpt - 1
-      dpx = pw/lptm
-      nval = nval+1
-      do  md = modes + 1,modes + mload
-         alfv(md) = nval
-      read(64,*) 
-      read(64,*) mmod(md),nmod(md),omrat,amp(md)
-      omegv(md) = 13.69*omrat*6280/omeg0 
-      read(64,111) (a1(j,md),j=1,lpt)
-      enddo
-      modes = modes + mload
-      harm(nval) = mload
+ 111  format(8e12.5)
+ 801  format('  subroutine readptrba, perturbation read=   ',A30)
       nvalx = nval
 cccccccccccccccccccccccc
 ccccc-  The perturbation harmonics are used only from md1 to md2
@@ -544,9 +525,6 @@ cccccccccc-renormalize
       write(6,57) dum,dum2,nval
  57   format('  change amp,freq, nval',1p3e12.4,i6)
             do 50 md = md1,md2
-               amp(md) = amp(k)*dum   !   modify mode amplitude
-               omegv(md) = omegv(k)*dum2          !  modify frequency
-ccc               write(6,52) md,nmod(md),mmod(md),amp(md)
  52               format(' mode- n,m,amp ',3i4,1pe12.4)
  50            continue
 ccccccccccccccc- now spline
