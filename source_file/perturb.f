@@ -368,6 +368,7 @@ ccccccccccccccccccccccccccc
       REAL*8 dpx,dum,dum2,dbsmax,dnmax,omrat,ampdum,alimit
       REAL*8 thetd,zetd,sdum,agg,snmd,xx2,dp2,rdum,qmn
       REAL*8 qfun,qdum,pdum,rpol,giac,dum3
+      
       INTEGER md,ndum,mdum,j,jm,jp,jpp,m,lptm,ldum,mload,k,jd,l,n
       INTEGER jdum,idum,kdum,mmin,mmax,nmd,mmd
 C============
@@ -424,53 +425,39 @@ ccccccccccccccccccccccccccc
       include 'orbcom'
       REAL*8 dpx,dum,dum2,dbsmax,dnmax,omrat,ampdum,alimit
       REAL*8 thetd,zetd,sdum,agg,snmd,xx2,dp2,rdum,qmn
-      REAL*8 qfun,qdum,pdum,rpol,giac
+      REAL*8 qfun,qdum,pdum,rpol,giac,dum3,wdt,cnt
+      common /splmd5/ wdt(10),cnt(10)
       INTEGER md,ndum,mdum,j,jm,jp,jpp,m,lptm,ldum,mload,k,jd,l,n
 C============
 ccc-modified for file from Nikolai, read alpha
-      nval = 0
-      modes = 0
+      nval = 1 
       plabel = "ptr1_sm_141711.dat"
       open(61,file=plabel,status='unknown') 
       write(6,801) plabel
-      read(61,*) 
-      read(61,*) 
       read(61,*) lpt,mload 
-      lptm = lpt - 1
+      lptm = lpt - 1 
       dpx = pw/lptm
-      nval = nval+1
-      do  md=1,mload
-         alfv(md) = nval
-         read(61,*) 
-         read(61,*) mmod(md),nmod(md),omrat,amp(md)
-         omegv(md) = omrat*2.0D3*pi/omeg0 
-         read(61,111) (a1(j,md),j=1,lpt)
-      enddo
-      modes = modes + mload
-      harm(nval) = mload
- 111  format(8e12.5)
+
+      read(61,*) ((a1(j,md),j=1,lpt),md=1,mload)
+      modes = mload
+ 111  format(81e12.5)
  801  format('  subroutine readptrba, perturbation read=   ',A30)
       nvalx = nval
 cccccccccccccccccccccccc
 ccccc-  The perturbation harmonics are used only from md1 to md2
-      md1 = 1
+      md1 = 1 
       md2 = modes
 cccccccccccccccccccc  Select one mode
       if(nplot.eq.9.or.nplot.eq.8) then
-      nvalx = 1
-      nval = 1
-      md1 = 1
+      nvalx = 1 
+      nval = 1 
+      md1 = 1 
       md2 = 14
-      modes = md2 - md1 + 1
+      modes = md2 - md1 + 1 
       endif
 cccccccccc-renormalize 
       dum =  1.   ! mode renormalization
       dum2 = 1.
-      write(6,57) dum,dum2,nval
- 57   format('  change amp,freq, nval',1p3e12.4,i6)
-            do 50 md = md1,md2
- 52               format(' mode- n,m,amp ',3i4,1pe12.4)
- 50            continue
 ccccccccccccccc- now spline
                call splna
       return

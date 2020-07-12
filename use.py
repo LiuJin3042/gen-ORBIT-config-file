@@ -14,14 +14,18 @@ if sys.version[0] == '2':
 from configuration import *
 import re
 
-
 def monitor():
     # a program to monitor running status
     if sys.version[0] == '2':
         snap_time = 45
         status, output = gso('qstat')
-        pattern = '(\d{7})\.service'
-        jobid = re.findall(pattern, output)[-1]
+        pattern = '(\d*).service'
+        try: 
+            jobid = re.findall(pattern, output)[-1]
+        except IndexError:
+            print('no jobid found, check the grammer')
+            print(output)
+            return
         print('jobid is ', jobid, '\n')
         while re.findall(jobid, output):
             print(output)

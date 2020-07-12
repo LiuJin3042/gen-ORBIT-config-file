@@ -9,7 +9,7 @@ Created on Fri Aug 16 08:04:15 2019
 
 from __future__ import division
 from configuration import *
-import make
+from make import main
 
 
 def linspace(start, stop, count):

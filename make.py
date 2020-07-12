@@ -22,7 +22,7 @@ import gen_fbm
 def main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0, 
          modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file,
          npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, perturb_subroutine,
-         submit):
+         comment, submit):
     """
     read and rewrite eqs.f
     output file should be in the same dir
@@ -59,4 +59,4 @@ if __name__ == '__main__':
     main(numeric, a, rmaj, rx, krip, q0, qed, qrx, mp0, 
          modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt, cnt, ptrb_file,
          npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, perturb_subroutine,
-         submit)
+         comment, submit)

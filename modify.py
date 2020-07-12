@@ -78,29 +78,18 @@ def mod_perturb(npert, modes, harm, nmod, mmod, omegv, alfv, amp, dele, a1, wdt,
                  '(eps*xd)**m*(1-n*qdum/m)/(gdum*qdum)',
                  '(eps*xd)**m*(pw-px)']
     if a1 == 2:
-        ptrb[51] = '         a1(j,md) = ' + mode_type[0] + '\n         a1(j,md) = ' + \
+        ptrb[51] = '         a1(j,md) = ' + mode_type[0] + '\n         a1(j,md) = ' + \ 
                    mode_type[1] + '\n'
     else:
         ptrb[51] = '         a1(j,md) = ' + mode_type[a1 - 1] + '\n'
-    ptrb[373] ="       plabel = '" + ptrb_file + "'\n"
-    
-    if npert == 4:
-        mode_params = ''
-        for i in range(modes):
-            j = i + 1
-            one_param = '''
-             alfv(%d) = %d
-             amp(%d) = %.3e
-             omegv(%d) = %.3f*2.0D3*pi/omeg0
-             nmod(%d) = %d
-             mmod(%d) = %d
-             '''%(j,alfv[i],j,amp[i],j,omegv[i],j,nmod[i],j,mmod[i])
-            mode_params += one_param
-        ptrb[387] = mode_params + '\n'
-    ptrb[432] ="       plabel = '" + ptrb_file + "'\n"
+    ptrb[374] ="       plabel = \"" + ptrb_file + "\"\n"
+    ptrb[387] = mode_params + '\n'
+    ptrb[433] = ptrb[374]
+    ptrb[439] = mode_params + '\n'
     w_ptrb.writelines(ptrb)
     r_ptrb.close()
     w_ptrb.close()
+
 
 
 def mod_orbit(npert, polo, p1, p2, pchi, zprt, prot, ekev, bkg, ntor, nprt, nplot, pdist, krip, perturb_subroutine):
